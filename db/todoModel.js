@@ -11,7 +11,7 @@ module.exports = {
    * @param {number} limit - todoテーブルで取得するデータ数上限
    * @return {Promise<Array>} - 全てのtodoデータ
    */
-  async getAllTodos(limit = 5) {
+  async getAllTodos(limit = 10) {
     return await knex.select("*").from(TODO_TABLE).limit(limit);
   },
   /**
@@ -37,7 +37,7 @@ module.exports = {
    * @param {number} limit - todoテーブルで取得するデータ数上限
    * @return {Promise<Array>} - 全ての完了しているtodoデータ
    */
-  async getCompletedTodos(limit = 5) {
+  async getCompletedTodos(limit = 10) {
     return await knex
       .select("*")
       .from(TODO_TABLE)
@@ -49,11 +49,12 @@ module.exports = {
    * @param {number} limit - todoテーブルで取得するデータ数上限
    * @return {Promise<Array>} - 全ての未完了のtodoデータ
    */
-  async getUncompletedTodos(limit = 5) {
+  async getUncompletedTodos(limit = 10) {
     return await knex
       .select("*")
       .from(TODO_TABLE)
-      .where({ status: "incomplete" }.limit(limit));
+      .where({ status: "incomplete" })
+      .limit(limit);
   },
 
   //insert
@@ -63,6 +64,7 @@ module.exports = {
    */
   async addNewTodoData(todoData) {
     await knex.table(TODO_TABLE).insert(todoData);
+    console.log(this.getTodoById(todoData.id));
     return this.getTodoById(todoData.id);
   },
 
