@@ -14,7 +14,6 @@ module.exports = {
   async getById(req, res) {
     const todoId = req.params.id;
     const foundTodo = await todoModel.getTodoById(todoId);
-    console.log("foundTodo----------", foundTodo);
     if (foundTodo !== undefined) {
       res.status(200).send({ data: foundTodo });
     } else {
@@ -23,9 +22,7 @@ module.exports = {
   },
 
   async getByLimitDate(req, res) {
-    console.log("req----------------", req);
     const limitDate = req.params.limit_date;
-    console.log("limitedDate", limitDate);
     const foundTodo = await todoModel.getTodoByLimitDate(limitDate);
     if (foundTodo !== undefined) {
       res.status(200).send({ data: foundTodo });
@@ -60,13 +57,6 @@ module.exports = {
 
   async addNew(req, res) {
     const reqTodo = req.body;
-    // const reqTodo = {
-    //   todo: "meeting with team",
-    //   genre: "work",
-    //   limit_date: "2024-11-20",
-    //   status: "incomplete",
-    // };
-    console.log(reqTodo);
     const addedTodo = await todoModel.addNewTodoData(reqTodo);
     res.status(200).send(addedTodo);
   },

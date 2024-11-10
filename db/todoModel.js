@@ -84,7 +84,7 @@ module.exports = {
    * @return {Promise<Array>} - 削除したtodoデータ
    */
   async deleteTodoData(todoData) {
-    const deleteTargetTodo = this.getTodoById(todoData);
+    const deleteTargetTodo = this.getTodoById(todoData.id);
     await knex.table(TODO_TABLE).where({ id: todoData.id }).del();
     return deleteTargetTodo;
   },
