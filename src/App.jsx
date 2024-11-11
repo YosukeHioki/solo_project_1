@@ -4,6 +4,7 @@ import { MainButtons } from "./components/MainButtons";
 import { NewTodoInput } from "./components/NewTodoInput";
 import { NewTodoGenreToggleButton } from "./components/NewTodoGenreToggleButton";
 import { NewTodoLimitDateCalendar } from "./components/NewTodoLimitDateCalendar";
+import { NewTodo } from "./components/NewTodo";
 
 export function App() {
   //状態定義
@@ -26,11 +27,11 @@ export function App() {
     fetch("/get/uncompletedTodos")
       .then((fetchData) => fetchData.json())
       .then((jsonData) => {
-        setCompletedTodos(jsonData.data);
+        setUncompletedTodos(jsonData.data);
       });
   }, []);
 
-  //必要情報が入力されたらそのデータをオブジェクトのプロパティの値として入れる
+  //NewTodoで必要情報が入力されたらそのデータをオブジェクトのプロパティの値として入れる
   useEffect(() => {
     if (todo !== "" && genre !== "" && limitDate !== "") {
       setTodoData({
@@ -42,7 +43,7 @@ export function App() {
     }
   }, [todo, genre, limitDate]);
 
-  //ジャンルのラジオボタンでどちらが選択されたかを取得
+  //NewTodoのジャンル選択のラジオボタンでどちらが選択されたかを取得
   function getRadioButton() {
     const getGenre = document.getElementById("todo-genre");
     return getGenre.genre.value;
@@ -50,17 +51,12 @@ export function App() {
 
   return (
     <>
-      {/*ヘッダー・選択ボタン*/}
-      <MainButtons />
-      {/*内容入力欄*/}
-      <NewTodoInput setTodo={setTodo} />
-      {/*ジャンル入力トグルボタン*/}
-      <NewTodoGenreToggleButton
+      <NewTodo
+        setTodo={setTodo}
         setGenre={setGenre}
         getRadioButton={getRadioButton}
+        setLimitDate={setLimitDate}
       />
-      {/*締切日の選択カレンダー*/}
-      <NewTodoLimitDateCalendar setLimitDate={setLimitDate} />
     </>
   );
 }
