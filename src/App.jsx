@@ -1,35 +1,32 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import { all } from "../db/todoController";
-//
-// async () => {
-//   const all = await import("all");
-// };
-// console.log("all-------", all());
-
-// export async function getDatabase() {
-
-//   return await fetch("http://localhost:3000/data").then((data) => {
-//     console.log("data--------------", data);
-//   });
-// }
-
-// import { atom, useAtom } from "jotai";
 
 export function App() {
-  const [todo, setTodo] = useState("");
-  const [genre, setGenre] = useState("");
-  const [limitDate, setLimitDate] = useState("");
-  const [todoData, setTodoData] = useState({});
+  //状態定義
+  const [todo, setTodo] = useState(""); //入力内容
+  const [genre, setGenre] = useState(""); //選択されたジャンル
+  const [limitDate, setLimitDate] = useState(""); //選択された期限の年月日
+  const [todoData, setTodoData] = useState({}); //入力された全てのデータをオブジェクトで保持
+  const [completedTodos, setCompletedTodos] = useState([]); //完了したデータ
+  const [uncompletedTodos, setUncompletedTodos] = useState([]); //未完了のデータ
 
-  const [dbData, setDbData] = useState([]);
+  //完了したデータと未完了のデータをそれぞれ取得
   useEffect(() => {
-    fetch("http://localhost:3000/data")
-      .then((data) => data.json())
-      .then((jsonData) => setDbData(jsonData));
+    fetch("/get/completedTodos")
+      .then((fetchData) => fetchData.json())
+      .then((jsonData) => {
+        setCompletedTodos(jsonData.data);
+      });
   }, []);
-  console.log("dbData-----------", dbData);
+  useEffect(() => {
+    fetch("/get/uncompletedTodos")
+      .then((fetchData) => fetchData.json())
+      .then((jsonData) => {
+        setCompletedTodos(jsonData.data);
+      });
+  }, []);
 
+  //必要情報が入力されたらそのデータをオブジェクトのプロパティの値として入れる
   useEffect(() => {
     if (todo !== "" && genre !== "" && limitDate !== "") {
       setTodoData({
@@ -39,9 +36,9 @@ export function App() {
         status: "incomplete",
       });
     }
-    console.log("todoData------------", todoData);
   }, [todo, genre, limitDate]);
 
+  //ジャンルのラジオボタンでどちらが選択されたかを取得
   function getRadioButton() {
     const getGenre = document.getElementById("todo-genre");
     return getGenre.genre.value;
@@ -49,8 +46,10 @@ export function App() {
 
   return (
     <>
+      <div></div>
+
       {/*タイトル*/}
-      <h1>Todo Card!!</h1>
+      <h1>Todo Card</h1>
       {/*内容入力欄*/}
       <div className={"todo-input"} style={{ justifyContent: "center" }}>
         <div>Todo</div>
@@ -96,32 +95,42 @@ export function App() {
   );
 }
 
-
 //POST確認用
+async function addNewTodo() {
+  const newTodo = {
+    todo: "meeting with team member",
+    genre: "work",
+    limit_date: "2024-11-20",
+    status: "incomplete",
+  };
+  const response = await fetch("/", {
+    method: "POST",
+    body: newTodo,
+  });
+}
+
 // async function addNewTodo() {
 //   const newTodo = {
-//     todo: "meeting with team",
+//     todo: "meeting with team member",
 //     genre: "work",
 //     limit_date: "2024-11-20",
 //     status: "incomplete",
 //   };
-//   const response = await fetch("/post", {
+//   const response = await fetch("/", {
 //     method: "POST",
 //     body: newTodo,
 //   });
 // }
 // addNewTodo();
 
+
+//データ広範で利用時はjotaiで管理
+// import { atom, useAtom } from "jotai";
+
 // const todo = atom("");
 // const [todoAtom, setTodoAtom] = useAtom(todo);
 // const genre = atom("");
 // const [genreAtom, setGenreAtom] = useAtom(genre);
-// const limitYear = atom(0);
-// const [limitYearAtom, setLimitYearAtom] = useAtom(limitYear);
-// const limitMonth = atom(0);
-// const [limitMonthAtom, setLimitMonthAtom] = useAtom(limitMonth);
-// const limitDay = atom(0);
-// const [limitDayAtom, setLimitDayAtom] = useAtom(limitDay);
 // const limitDate = atom("");
 // const [limitDateAtom, setLimitDateAtom] = useAtom(limitDate);
 // setLimitDateAtom(limitYearAtom + "-" + limitMonthAtom + "-" + limitDayAtom);

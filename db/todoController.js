@@ -1,7 +1,7 @@
 const todoModel = require("./todoModel");
 
 module.exports = {
-  async all(req, res) {
+  async getAll(req, res) {
     const limit = req.query.limit;
     const allTodo = await todoModel.getAllTodos(limit);
     if (allTodo !== undefined) {
