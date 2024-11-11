@@ -6,8 +6,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 // app.use((req, res) => {
-//   //！！！"*"はセキュリティ的に問題があるため、許可するURLに変える
-//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
 // });
 const todoController = require("./db/todoController");
 
