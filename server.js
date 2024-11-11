@@ -5,6 +5,7 @@ const environment = process.env.NODE_ENV;
 const express = require("express");
 const app = express();
 app.use(express.json());
+app.use("/", express.static("./dist"));
 // app.use((req, res) => {
 //   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
 // });

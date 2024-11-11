@@ -1,13 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
+// import { all } from "../db/todoController";
+//
+// async () => {
+//   const all = await import("all");
+// };
+// console.log("all-------", all());
 
-export async function getDatabase() {
-  return await fetch("http://localhost:3000/data").then((data) => {
-    console.log("data--------------", data);
-  });
-}
+// export async function getDatabase() {
 
-getDatabase();
+//   return await fetch("http://localhost:3000/data").then((data) => {
+//     console.log("data--------------", data);
+//   });
+// }
 
 // import { atom, useAtom } from "jotai";
 
@@ -16,6 +21,14 @@ export function App() {
   const [genre, setGenre] = useState("");
   const [limitDate, setLimitDate] = useState("");
   const [todoData, setTodoData] = useState({});
+
+  const [dbData, setDbData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/data")
+      .then((data) => data.json())
+      .then((jsonData) => setDbData(jsonData));
+  }, []);
+  console.log("dbData-----------", dbData);
 
   useEffect(() => {
     if (todo !== "" && genre !== "" && limitDate !== "") {
@@ -37,7 +50,7 @@ export function App() {
   return (
     <>
       {/*タイトル*/}
-      <h1>Todo Card</h1>
+      <h1>Todo Card!!</h1>
       {/*内容入力欄*/}
       <div className={"todo-input"} style={{ justifyContent: "center" }}>
         <div>Todo</div>
