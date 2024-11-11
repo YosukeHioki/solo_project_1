@@ -1,6 +1,12 @@
 import React from "react";
 
-export function NewTodoLimitDateCalendar({ setLimitDate }) {
+export function NewTodoLimitDateCalendar({
+  setLimitDate,
+  addNewTodo,
+  todo,
+  genre,
+  limitDate,
+}) {
   return (
     <>
       {/*締切日の選択カレンダー*/}
@@ -15,7 +21,15 @@ export function NewTodoLimitDateCalendar({ setLimitDate }) {
       </div>
       {/*登録ボタン*/}
       <div>
-        <button>SUBMIT</button>
+        <button
+          onClick={() => {
+            if (todo !== "" && genre !== "" && limitDate !== "") {
+              addNewTodo();
+            }
+          }}
+        >
+          SUBMIT
+        </button>
       </div>
     </>
   );

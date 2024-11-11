@@ -4,7 +4,15 @@ import { NewTodoGenreToggleButton } from "./NewTodoGenreToggleButton";
 import { NewTodoLimitDateCalendar } from "./NewTodoLimitDateCalendar";
 import React from "react";
 
-export function NewTodo({ setTodo, setGenre, getRadioButton, setLimitDate }) {
+import { addNewTodoData } from "../../db/todoModel";
+
+export function NewTodo({
+  setTodo,
+  setGenre,
+  getRadioButton,
+  setLimitDate,
+  addNewTodo,
+}) {
   return (
     <div>
       {/*ヘッダー・選択ボタン*/}
@@ -17,7 +25,10 @@ export function NewTodo({ setTodo, setGenre, getRadioButton, setLimitDate }) {
         getRadioButton={getRadioButton}
       />
       {/*締切日の選択カレンダー*/}
-      <NewTodoLimitDateCalendar setLimitDate={setLimitDate} />
+      <NewTodoLimitDateCalendar
+        setLimitDate={setLimitDate}
+        addNewTodo={addNewTodo}
+      />
     </div>
   );
 }

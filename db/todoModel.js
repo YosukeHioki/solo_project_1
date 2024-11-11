@@ -64,8 +64,6 @@ module.exports = {
    */
   async addNewTodoData(todoData) {
     await knex.table(TODO_TABLE).insert(todoData);
-    console.log(this.getTodoById(todoData.id));
-    return this.getTodoById(todoData.id);
   },
 
   //update
