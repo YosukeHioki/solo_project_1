@@ -17,7 +17,7 @@ function setupServer() {
   app.get("/get/completedTodos", todoController.getCompleted);
   app.get("/get/limit_date/:limit_date", todoController.getByLimitDate);
   app.get("/get/id/:id/", todoController.getById);
-  app.get("/data", todoController.getAll);
+  app.get("/get/data", todoController.getAll);
 
   // //todoデータ追加、動作せず
   // app.post("/post", todoController.addNew);

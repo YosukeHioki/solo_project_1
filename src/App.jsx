@@ -1,5 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { MainButtons } from "./components/MainButtons";
+import { NewTodoInput } from "./components/NewTodoInput";
+import { NewTodoGenreToggleButton } from "./components/NewTodoGenreToggleButton";
+import { NewTodoLimitDateCalendar } from "./components/NewTodoLimitDateCalendar";
 
 export function App() {
   //状態定義
@@ -46,51 +50,17 @@ export function App() {
 
   return (
     <>
-      <div></div>
-
-      {/*タイトル*/}
-      <h1>Todo Card</h1>
+      {/*ヘッダー・選択ボタン*/}
+      <MainButtons />
       {/*内容入力欄*/}
-      <div className={"todo-input"} style={{ justifyContent: "center" }}>
-        <div>Todo</div>
-        <input
-          type={"text"}
-          onChange={(e) => {
-            setTodo(e.target.value);
-          }}
-        />
-        {/*ジャンル入力トグルボタン*/}
-        <div>Genre</div>
-        <form
-          id={"todo-genre"}
-          style={{ display: "flex " }}
-          onChange={() => {
-            setGenre(getRadioButton());
-          }}
-        >
-          <div>
-            <input type={"radio"} name={"genre"} value={"work"} />
-            <label htmlFor={"work"}>work</label>
-          </div>
-          <div>
-            <input type={"radio"} name={"genre"} value={"private"} />
-            <label htmlFor={"private"}>private</label>
-          </div>
-        </form>
-        {/*締切日の選択カレンダー*/}
-        <div>
-          <div>Limit-Date</div>
-          <input
-            type={"date"}
-            onChange={(e) => {
-              setLimitDate(e.target.value);
-            }}
-          />
-        </div>
-      </div>
-      <div>
-        <button>SUBMIT</button>
-      </div>
+      <NewTodoInput setTodo={setTodo} />
+      {/*ジャンル入力トグルボタン*/}
+      <NewTodoGenreToggleButton
+        setGenre={setGenre}
+        getRadioButton={getRadioButton}
+      />
+      {/*締切日の選択カレンダー*/}
+      <NewTodoLimitDateCalendar setLimitDate={setLimitDate} />
     </>
   );
 }
