@@ -1,6 +1,6 @@
 import React from "react";
 
-export function MainButtons({ setIsCompleted }) {
+export function MainButtons({ setDisplay, setIsCompleted }) {
   return (
     <>
       {/*ヘッダー*/}
@@ -8,13 +8,11 @@ export function MainButtons({ setIsCompleted }) {
       {/*メインの選択ボタン*/}
       <div style={{ display: "flex" }}>
         {/*新規作成*/}
-        <button>Create New Todo</button>
+        <button onClick={() => setDisplay("block")}>Create New Todo</button>
         {/*完了済みデータ表示*/}
-        <button onClick={() => setIsCompleted(true)}>Todo : Completed</button>
+        <button onClick={() => setIsCompleted(true)}>Todo : Complete</button>
         {/*未完了データ表示*/}
-        <button onClick={() => setIsCompleted(false)}>
-          Todo : Uncompleted
-        </button>
+        <button onClick={() => setIsCompleted(false)}>Todo : Incomplete</button>
       </div>
     </>
   );

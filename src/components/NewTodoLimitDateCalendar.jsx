@@ -6,6 +6,7 @@ export function NewTodoLimitDateCalendar({
   todo,
   genre,
   limitDate,
+  setDisplay,
 }) {
   return (
     <>
@@ -30,6 +31,7 @@ export function NewTodoLimitDateCalendar({
         >
           SUBMIT
         </button>
+        <button onClick={() => setDisplay("none")}>CANCEL</button>
       </div>
     </>
   );
