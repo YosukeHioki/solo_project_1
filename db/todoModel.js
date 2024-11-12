@@ -73,7 +73,7 @@ module.exports = {
    */
   async updateTodoData(todoData) {
     await knex.table(TODO_TABLE).where({ id: todoData.id }).update(todoData);
-    return this.getTodoById(todoData.id);
+    return await this.getTodoById(todoData.id);
   },
 
   //delete
@@ -84,6 +84,8 @@ module.exports = {
   async deleteTodoData(todoData) {
     const deleteTargetTodo = this.getTodoById(todoData.id);
     await knex.table(TODO_TABLE).where({ id: todoData.id }).del();
-    if (this.getTodoById(todoData.id) === undefined) return deleteTargetTodo;
+    console.log((await this.getTodoById(todoData.id)) === undefined);
+    if ((await this.getTodoById(todoData.id)) === undefined)
+      return deleteTargetTodo;
   },
 };

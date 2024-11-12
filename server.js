@@ -6,9 +6,6 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 app.use("/", express.static("./dist"));
-// app.use((req, res) => {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-// });
 const todoController = require("./db/todoController");
 
 function setupServer() {
@@ -25,7 +22,7 @@ function setupServer() {
   //todoデータ更新、未確認！！！
   app.patch("/api", todoController.update);
 
-  //todoデータ削除、未確認！！！
+  //todoデータ削除
   app.delete("/api", todoController.delete);
   return app;
 }

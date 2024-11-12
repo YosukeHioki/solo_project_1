@@ -19,7 +19,7 @@ export function App() {
 
   const [completedTodos, setCompletedTodos] = useState([]); //完了したデータ
   const [uncompletedTodos, setUncompletedTodos] = useState([]); //未完了のデータ
-  const [isCompleted, setIsCompleted] = useState(true); //未完了データ画面かどうか
+  const [isCompleted, setIsCompleted] = useState(false); //未完了データ画面かどうか
 
   // const completedContext = createContext([]);
   // const [completedTodos, setCompletedTodos] = useContext(completedContext); //完了したデータ
@@ -75,21 +75,6 @@ export function App() {
       window.location.reload();
     } else {
       window.alert("Todo作成に失敗しました、再度試してください。");
-    }
-  }
-
-  // uncompletedTodosから対象のデータをDELETEするため処理
-  async function deleteTodo() {
-    const response = await fetch("/api", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(todoData),
-    });
-    if (response.status === 200) {
-      window.alert("選択されたTodoは削除されました！");
-      window.location.reload();
-    } else {
-      window.alert("選択されたTodoの削除に失敗しました、再度試してください。");
     }
   }
 

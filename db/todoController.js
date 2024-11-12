@@ -69,9 +69,10 @@ module.exports = {
 
   async delete(req, res) {
     const reqTodo = req.body;
+    console.log("reqTodo----", reqTodo);
     const deletedTodo = await todoModel.deleteTodoData(reqTodo);
-    if ((await todoModel.getTodoById(reqTodo.id)) !== undefined) {
-      res.status(200).send(deletedTodo);
+    if ((await todoModel.getTodoById(reqTodo.id)) === undefined) {
+      res.status(200).send("Success to delete.");
     } else {
       res.status(500).json({ error: "Could not delete." });
     }
