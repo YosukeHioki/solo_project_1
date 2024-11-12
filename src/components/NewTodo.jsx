@@ -1,8 +1,8 @@
+import React from "react";
 import { MainButtons } from "./MainButtons";
 import { NewTodoInput } from "./NewTodoInput";
 import { NewTodoGenreToggleButton } from "./NewTodoGenreToggleButton";
 import { NewTodoLimitDateCalendar } from "./NewTodoLimitDateCalendar";
-import React from "react";
 
 import { addNewTodoData } from "../../db/todoModel";
 

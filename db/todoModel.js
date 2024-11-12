@@ -84,6 +84,6 @@ module.exports = {
   async deleteTodoData(todoData) {
     const deleteTargetTodo = this.getTodoById(todoData.id);
     await knex.table(TODO_TABLE).where({ id: todoData.id }).del();
-    return deleteTargetTodo;
+    if (this.getTodoById(todoData.id) === undefined) return deleteTargetTodo;
   },
 };
