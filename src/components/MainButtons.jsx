@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect, memo } from "react";
 
-export function MainButtons() {
+export function MainButtons({ setCompleteOrIncomplete }) {
   return (
     <>
       {/*ヘッダー*/}
       <h1>Todo Manager</h1>
-      {/*選択ボタン*/}
+      {/*メインの選択ボタン*/}
       <div style={{ display: "flex" }}>
+        {/*新規作成*/}
         <button>Create New Todo</button>
-        <button>Todo : Completed</button>
-        <button>Todo : Uncompleted</button>
+        {/*完了済みデータ表示*/}
+        <button onClick={() => setCompleteOrIncomplete("complete")}>
+          Todo : Completed
+        </button>
+        {/*未完了データ表示*/}
+        <button onClick={() => setCompleteOrIncomplete("incomplete")}>
+          Todo : Uncompleted
+        </button>
       </div>
     </>
   );

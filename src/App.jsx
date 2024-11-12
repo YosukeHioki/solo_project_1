@@ -8,6 +8,7 @@ import { NewTodoInput } from "./components/NewTodoInput";
 import { NewTodoGenreToggleButton } from "./components/NewTodoGenreToggleButton";
 import { NewTodoLimitDateCalendar } from "./components/NewTodoLimitDateCalendar";
 import { CompletedTodos } from "./components/CompletedTodos";
+import { UncompletedTodos } from "./components/UncompletedTodos";
 
 export function App() {
   //状態定義
@@ -17,10 +18,10 @@ export function App() {
   const [todoData, setTodoData] = useState({}); //入力された全てのデータをオブジェクトで保持
 
   const [completedTodos, setCompletedTodos] = useState([]); //完了したデータ
-
   const [uncompletedTodos, setUncompletedTodos] = useState([]); //未完了のデータ
+  const [completeOrIncomplete, setCompleteOrIncomplete] =
+    useState("incomplete"); //未完了データ画面かどうか
 
-  const [isCompletedData, setIsCompletedData] = useState(true); //完了データ画面かどうか
   // const completedContext = createContext([]);
   // const [completedTodos, setCompletedTodos] = useContext(completedContext); //完了したデータ
   // const uncompletedContext = createContext([]);
@@ -55,7 +56,6 @@ export function App() {
         status: "incomplete",
       });
     }
-    console.log("todoData----", todoData);
   }, [todo, genre, limitDate]);
 
   //NewTodoのジャンル選択のラジオボタンでどちらが選択されたかを取得
@@ -78,7 +78,7 @@ export function App() {
       {/*新しくTodoを作成*/}
       <div>
         {/*ヘッダー・選択ボタン*/}
-        <MainButtons />
+        <MainButtons setCompleteOrIncomplete={setCompleteOrIncomplete} />
         {/*内容入力欄*/}
         <NewTodoInput setTodo={setTodo} />
         {/*ジャンル入力トグルボタン*/}
@@ -95,16 +95,18 @@ export function App() {
           limitDate={limitDate}
         />
       </div>
-      {/*完了済みのTodoを表示*/}
-      <h2>Todo : Completed</h2>
+
       <div>
-        {isCompletedData ? (
-          <CompletedTodos
-            setIsCompletedData={setIsCompletedData}
-            completedTodos={completedTodos}
+        {completeOrIncomplete === "incomplete" ? (
+          <UncompletedTodos
+            setCompleteOrIncomplete={setCompleteOrIncomplete}
+            uncompletedTodos={uncompletedTodos}
           />
         ) : (
-          <UncompletedTodos />
+          <CompletedTodos
+            setCompleteOrIncomplete={setCompleteOrIncomplete}
+            completedTodos={completedTodos}
+          />
         )}
       </div>
     </>
