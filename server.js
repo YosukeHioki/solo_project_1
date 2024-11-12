@@ -13,20 +13,20 @@ const todoController = require("./db/todoController");
 
 function setupServer() {
   //todoデータ取得
-  app.get("/uncompletedTodos", todoController.getUncompleted);
-  app.get("/completedTodos", todoController.getCompleted);
-  app.get("/limit_date/:limit_date", todoController.getByLimitDate);
-  app.get("/id/:id/", todoController.getById);
-  app.get("/allData", todoController.getAll);
+  app.get("/api/uncompletedTodos", todoController.getUncompleted);
+  app.get("/api/completedTodos", todoController.getCompleted);
+  app.get("/api/limit_date/:limit_date", todoController.getByLimitDate);
+  app.get("/api/id/:id", todoController.getById);
+  app.get("/api/allData", todoController.getAll);
 
-  //todoデータ追加、動作せず
-  app.post("/", todoController.addNew);
+  //todoデータ追加
+  app.post("/api", todoController.addNew);
 
-  //todoデータ更新、動作せず
-  app.patch("/", todoController.update);
+  //todoデータ更新、未確認！！！
+  app.patch("/api", todoController.update);
 
-  //todoデータ削除、動作せず
-  app.delete("/", todoController.delete);
+  //todoデータ削除、未確認！！！
+  app.delete("/api", todoController.delete);
   return app;
 }
 

@@ -31,14 +31,14 @@ export function App() {
 
   //完了したデータと未完了のデータをそれぞれ取得
   useEffect(() => {
-    fetch("/completedTodos")
+    fetch("/api/completedTodos")
       .then((fetchData) => fetchData.json())
       .then((jsonData) => {
         setCompletedTodos(jsonData.data);
       });
   }, []);
   useEffect(() => {
-    fetch("/uncompletedTodos")
+    fetch("/api/uncompletedTodos")
       .then((fetchData) => fetchData.json())
       .then((jsonData) => {
         setUncompletedTodos(jsonData.data);
@@ -55,6 +55,7 @@ export function App() {
         status: "incomplete",
       });
     }
+    console.log("todoData----", todoData);
   }, [todo, genre, limitDate]);
 
   //NewTodoのジャンル選択のラジオボタンでどちらが選択されたかを取得

@@ -1,12 +1,17 @@
+import React, { useEffect } from "react";
+
 export function CompletedTodos({ setIsCompletedData, completedTodos }) {
-  setIsCompletedData(true);
+  useEffect(() => {
+    setIsCompletedData(true);
+  }, []);
+
   console.log(completedTodos);
   return completedTodos.map((todo, index) => {
     return (
-      <div style={{ backgroundColor: "cyan", justifyContent: "center" }}>
-        <div>{todo.todo}</div>
-        <div>{todo.genre}</div>
-        <div>{todo.limit_date}</div>
+      <div key={index} style={{ backgroundColor: "cyan", marginBottom: "1%" }}>
+        <div>todo : {todo.todo}</div>
+        <div>genre : {todo.genre}</div>
+        <div>limit_data : {todo.limit_date}</div>
       </div>
     );
   });
