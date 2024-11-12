@@ -11,6 +11,7 @@ export function CompletedTodos({ completedTodos }) {
         <div>todo : {todo.todo}</div>
         <div>genre : {todo.genre}</div>
         <div>limit_date : {formattedLimitDate}</div>
+        <div>(id : {todo.id})</div>
       </div>
     );
   });

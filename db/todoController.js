@@ -71,7 +71,10 @@ module.exports = {
     const reqTodo = req.body;
     console.log("reqTodo----", reqTodo);
     const deletedTodo = await todoModel.deleteTodoData(reqTodo);
-    if ((await todoModel.getTodoById(reqTodo.id)) === undefined) {
+    if (
+      (await todoModel.getTodoById(reqTodo.id)) === undefined &&
+      reqTodo.id !== 0
+    ) {
       res.status(200).send("Success to delete.");
     } else {
       res.status(500).json({ error: "Could not delete." });

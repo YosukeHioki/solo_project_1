@@ -19,46 +19,63 @@ export function UncompletedTodos({ uncompletedTodos }) {
     });
   }, [id, todo, genre, limitDate, status]);
 
-  // uncompletedTodosから対象のデータをDELETEするため処理
-  async function deleteTodo(todoData) {
-    setId(todoData.id);
-    // setTodo(todoData.todo);
-    // setGenre(todoData.genre);
-    // setLimitDate(todoData.limit_date);
-    // setStatus(todoData.status);
+  async function changeStatus(data) {
+    data.status = "complete";
+    const response = await fetch("/api", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (response.status === 200) {
+      window.alert("選択されたTodoを完了状態に変更しました！");
+      window.location.reload();
+    } else {
+      window.alert(
+        "選択されたTodoを完了状態に変更できませんでした、再度お試しください。",
+      );
+    }
+  }
 
+  // uncompletedTodosから対象のデータをDELETEするための処理
+  async function deleteTodo(data) {
     const response = await fetch("/api", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(todoData),
+      body: JSON.stringify(data),
     });
     if (response.status === 200) {
       window.alert("選択されたTodoは削除されました！");
       window.location.reload();
     } else {
-      window.alert("選択されたTodoの削除に失敗しました、再度試してください。");
+      window.alert("選択されたTodoの削除に失敗しました、再度お試しください。");
     }
   }
 
-  return uncompletedTodos.map((todoData, index) => {
-    const limitDate = moment(todo.limit_date);
+  return uncompletedTodos.map((uncompletedTodo, index) => {
+    const limitDate = moment(uncompletedTodo.limit_date);
     const formattedLimitDate = limitDate.format("YY/MM/DD");
     return (
       <div
         key={index}
         style={{ backgroundColor: "orange", marginBottom: "1%" }}
       >
-        <h2>{todoData.status}</h2>
-        <div>todo : {todoData.todo}</div>
-        <div>genre : {todoData.genre}</div>
+        <h2>{uncompletedTodo.status}</h2>
+        <div>todo : {uncompletedTodo.todo}</div>
+        <div>genre : {uncompletedTodo.genre}</div>
         <div>limit_date : {formattedLimitDate}</div>
-        <div>(id : {todoData.id})</div>
+        <div>(id : {uncompletedTodo.id})</div>
         <div style={{ display: "flex" }}>
-          <button>Complete</button>
+          <button
+            onClick={async () => {
+              await changeStatus(uncompletedTodo);
+            }}
+          >
+            Complete
+          </button>
           <button>Edit</button>
           <button
             onClick={async () => {
-              await deleteTodo(todoData);
+              await deleteTodo(uncompletedTodo);
             }}
           >
             Delete
