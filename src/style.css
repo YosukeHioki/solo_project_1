@@ -1,0 +1,65 @@
+.main-container {
+    width: 50%;
+    margin: 5%
+}
+
+/*ボタン一括*/
+
+.buttons {
+    margin: 2% 0 3% 0;
+    text-align: right
+}
+
+.buttons Button {
+    margin-right: 1%;
+}
+
+/*App*/
+.new-todo {
+    background-color: lavenderblush;
+    padding: 5%;
+    margin: 2% 0;
+}
+
+/*EditMode*/
+
+.edit-todo {
+    background-color: lavenderblush;
+    padding: 5%;
+    margin: 2% 0;
+}
+
+/*MainButtons*/
+.main-buttons {
+    margin-bottom: 3%;
+    justify-content: right;
+}
+
+/*NewTodoInput*/
+.text-field {
+    background-color: white;
+    width: 80%;
+}
+
+
+/*NewTodoLimitDateCalendar*/
+
+/*UncompletedTodosList*/
+.uncompletedTodosButtons {
+    margin-top: 2%;
+    justify-content: right;
+    display: flex;
+}
+
+.uncompletedTodosButtons Button {
+    margin-right: 1%;
+}
+
+.todo-data {
+    padding: 5%;
+}
+
+.todosList {
+    padding: 5%;
+}
+

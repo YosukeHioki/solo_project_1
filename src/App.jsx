@@ -1,14 +1,15 @@
-import React from "react";
+import * as React from "react";
+import { Card } from "@mui/material";
 import { useState, useEffect, createContext, useContext } from "react";
-import { atom, useAtom } from "jotai";
 
-// import { NewTodo } from "./components/NewTodo";
 import { MainButtons } from "./components/MainButtons";
 import { NewTodoInput } from "./components/NewTodoInput";
 import { NewTodoGenreToggleButton } from "./components/NewTodoGenreToggleButton";
 import { NewTodoLimitDateCalendar } from "./components/NewTodoLimitDateCalendar";
 import { CompletedTodos } from "./components/CompletedTodos";
 import { UncompletedTodos } from "./components/UncompletedTodos";
+
+import "./style.css";
 
 export function App() {
   //状態定義
@@ -20,14 +21,6 @@ export function App() {
   const [completedTodos, setCompletedTodos] = useState([]); //完了したデータ
   const [uncompletedTodos, setUncompletedTodos] = useState([]); //未完了のデータ
   const [isCompleted, setIsCompleted] = useState(false); //未完了データ画面かどうか
-
-  // const completedContext = createContext([]);
-  // const [completedTodos, setCompletedTodos] = useContext(completedContext); //完了したデータ
-  // const uncompletedContext = createContext([]);
-  // const [uncompletedTodos, setUncompletedTodos] =
-  //   useContext(uncompletedContext); //未完了のデータ
-  // const isCompletedContext = createContext("true");
-  // const [isCompletedData, setIsCompletedData] = useContext(isCompletedContext); //完了データ画面かどうか
 
   //完了したデータを取得
   useEffect(() => {
@@ -69,7 +62,7 @@ export function App() {
     const response = await fetch("/api", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(todoData),
+      body: JSON.fstringify(todoData),
     });
     if (response.status === 200) {
       window.alert("新しいTodoが作成されました！");
@@ -80,13 +73,15 @@ export function App() {
   }
 
   return (
-    <>
+    <div className={"main-container"}>
       {/*ヘッダー・選択ボタン*/}
       <MainButtons setDisplay={setDisplay} setIsCompleted={setIsCompleted} />
       {/*新しくTodoを作成*/}
-      <div
-        className={"new-todo"}
-        style={{ display, backgroundColor: "lightgreen" }}
+      <Card
+        className="new-todo"
+        style={{
+          display,
+        }}
       >
         {/*内容入力欄*/}
         <NewTodoInput setTodo={setTodo} />
@@ -104,7 +99,7 @@ export function App() {
           limitDate={limitDate}
           setDisplay={setDisplay}
         />
-      </div>
+      </Card>
       {/*登録済みTodoリストを表示*/}
       <div className={"todo-list"}>
         {!isCompleted ? (
@@ -113,19 +108,6 @@ export function App() {
           <CompletedTodos completedTodos={completedTodos} />
         )}
       </div>
-    </>
+    </div>
   );
 }
-
-//データ広範で利用時はjotaiで管理
-// import { atom, useAtom } from "jotai";
-
-// const todo = atom("");
-// const [todoAtom, setTodoAtom] = useAtom(todo);
-// const genre = atom("");
-// const [genreAtom, setGenreAtom] = useAtom(genre);
-// const limitDate = atom("");
-// const [limitDateAtom, setLimitDateAtom] = useAtom(limitDate);
-// setLimitDateAtom(limitYearAtom + "-" + limitMonthAtom + "-" + limitDayAtom);
-// console.log(limitDateAtom);
-// const todoLimitDate = atom

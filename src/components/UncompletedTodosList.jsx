@@ -1,5 +1,7 @@
 import React from "react";
 import moment from "moment";
+import { Card, Button } from "@mui/material";
+import "../style.css";
 
 export function UncompletedTodosList({
   uncompletedTodos,
@@ -13,42 +15,48 @@ export function UncompletedTodosList({
       "YY/MM/DD",
     );
     return (
-      <div
+      <Card
         key={uncompletedTodo.id}
+        className="todosList"
         style={{ backgroundColor: "orange", marginBottom: "1%" }}
       >
         <h2>{uncompletedTodo.status}</h2>
-        <div>todo : {uncompletedTodo.todo}</div>
-        <div>genre : {uncompletedTodo.genre}</div>
-        <div>limit_date : {formattedLimitDate}</div>
-        <div>(id : {uncompletedTodo.id})</div>
-        <div style={{ display: "flex" }}>
+        <Card className="todo-data">
+          <div>TODO : {uncompletedTodo.todo}</div>
+          <div>GENRE : {uncompletedTodo.genre}</div>
+          <div>LIMIT-DATE : {formattedLimitDate}</div>
+          {/*<div>(id : {uncompletedTodo.id})</div>*/}
+        </Card>
+        <div className="uncompletedTodosButtons" style={{ display: "flex" }}>
           {/*完了ボタン*/}
-          <button
+          <Button
+            variant="contained"
             onClick={async () => {
               await changeStatus(uncompletedTodo);
             }}
           >
             COMPLETE
-          </button>
+          </Button>
           {/*編集ボタン*/}
-          <button
+          <Button
+            variant="contained"
             onClick={() => {
               setAllStates(uncompletedTodo);
             }}
           >
             EDIT
-          </button>
+          </Button>
           {/*削除ボタン*/}
-          <button
+          <Button
+            variant="contained"
             onClick={async () => {
               await deleteTodo(uncompletedTodo);
             }}
           >
             DELETE
-          </button>
+          </Button>
         </div>
-      </div>
+      </Card>
     );
   });
 }

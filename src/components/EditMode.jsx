@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { Card, Button, TextField } from "@mui/material";
+import "../style.css";
 
 export function EditMode({
   setTodo,
@@ -12,11 +14,14 @@ export function EditMode({
   updateTodo,
 }) {
   return (
-    <div style={{ backgroundColor: "lightgreen", marginTop: "2%" }}>
+    <Card className="edit-todo">
       {/*編集モードで必要な入力用DOM*/}
+
       <div className={"edit-mode"}>
         <div>Todo</div>
-        <input
+        <TextField
+          className="text-field"
+          variant="standard"
           type={"text"}
           value={todoData.todo}
           onChange={(e) => {
@@ -41,21 +46,25 @@ export function EditMode({
           />
         </div>
       </div>
-      <button
-        onClick={async () => {
-          setAllStates(todoData);
-          await updateTodo(todoData);
-        }}
-      >
-        OK
-      </button>
-      <button
-        onClick={() => {
-          setIsEditMode(false);
-        }}
-      >
-        CANCEL
-      </button>
-    </div>
+      <div className="buttons">
+        <Button
+          variant="contained"
+          onClick={async () => {
+            setAllStates(todoData);
+            await updateTodo(todoData);
+          }}
+        >
+          OK
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            setIsEditMode(false);
+          }}
+        >
+          CANCEL
+        </Button>
+      </div>
+    </Card>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+
 import { UncompletedTodosList } from "./UncompletedTodosList";
 import { EditMode } from "./EditMode";
+import "../style.css";
 
 export function UncompletedTodos({ uncompletedTodos }) {
   const [id, setId] = useState(0); //取得したid
@@ -93,7 +95,7 @@ export function UncompletedTodos({ uncompletedTodos }) {
   // DOM生成
 
   return (
-    <div className={"view-or-edit"}>
+    <div className="view-or-edit">
       {!isEditMode ? (
         <UncompletedTodosList
           uncompletedTodos={uncompletedTodos}
