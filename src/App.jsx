@@ -84,7 +84,10 @@ export function App() {
       {/*ヘッダー・選択ボタン*/}
       <MainButtons setDisplay={setDisplay} setIsCompleted={setIsCompleted} />
       {/*新しくTodoを作成*/}
-      <div className={"new-todo"} style={{ display }}>
+      <div
+        className={"new-todo"}
+        style={{ display, backgroundColor: "lightgreen" }}
+      >
         {/*内容入力欄*/}
         <NewTodoInput setTodo={setTodo} />
         {/*ジャンル入力トグルボタン*/}

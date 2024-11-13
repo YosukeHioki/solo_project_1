@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 
 export function EditMode({
@@ -8,12 +8,13 @@ export function EditMode({
   setGenre,
   setLimitDate,
   setAllStates,
+  setIsEditMode,
   updateTodo,
 }) {
   return (
-    <>
+    <div style={{ backgroundColor: "lightgreen", marginTop: "2%" }}>
       {/*編集モードで必要な入力用DOM*/}
-      <div className={"edit-card"} style={{ backgroundColor: "white" }}>
+      <div className={"edit-mode"}>
         <div>Todo</div>
         <input
           type={"text"}
@@ -34,7 +35,6 @@ export function EditMode({
         <div>
           <input
             type={"date"}
-            value={moment(limitDate).format("yyyy-MM-DD")}
             onChange={(e) => {
               setLimitDate(e.target.value);
             }}
@@ -56,6 +56,6 @@ export function EditMode({
       >
         CANCEL
       </button>
-    </>
+    </div>
   );
 }

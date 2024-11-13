@@ -7,7 +7,7 @@ export function UncompletedTodos({ uncompletedTodos }) {
   const [id, setId] = useState(0); //取得したid
   const [todo, setTodo] = useState(""); //入力内容
   const [genre, setGenre] = useState(""); //選択されたジャンル
-  const [limitDate, setLimitDate] = useState(""); //選択された期限の年月日
+  const [limitDate, setLimitDate] = useState(new Date()); //選択された期限の年月日
   const [status, setStatus] = useState(""); //完了・未完了の状態
   const [todoData, setTodoData] = useState({}); //入力された全てのデータをオブジェクトで保持
   const [isEditMode, setIsEditMode] = useState(false); // 編集モードかリスト表示か
@@ -23,7 +23,7 @@ export function UncompletedTodos({ uncompletedTodos }) {
     });
   }, [id, todo, genre, limitDate, status]);
 
-  //編集時に対象のTodoの値を取得する関数
+  //EDIT時に対象のTodoの値を取得する関数
   function setAllStates(data) {
     setId(data.id);
     setTodo(data.todo);
@@ -109,6 +109,7 @@ export function UncompletedTodos({ uncompletedTodos }) {
           setGenre={setGenre}
           setLimitDate={setLimitDate}
           setAllStates={setAllStates}
+          setIsEditMode={setIsEditMode}
           updateTodo={updateTodo}
         />
       )}
