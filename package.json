@@ -5,8 +5,8 @@
   "scripts": {
     "test": "clear && echo \"Error: no test specified\" && exit 1",
     "dev": "clear && nodemon server.js",
-    "start": "node_modules/.bin/vite",
-    "build": "node_modules/.bin/vite build",
+    "build": "npm install",
+    "start": "node ./src/index.js",
     "makeMigration": "./node_modules/.bin/knex migrate:make",
     "makeSeed": "./node_modules/.bin/knex seed:make",
     "migrate": "./node_modules/.bin/knex migrate:latest",
@@ -37,6 +37,6 @@
     "eslint-plugin-react": "^7.37.2",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
-    "vite": "^5.4.10"
+    "vite": "^5.4.11"
   }
 }

@@ -16,9 +16,9 @@ export function CompletedTodos({ completedTodos }) {
       >
         <h2>{todo.status}</h2>
         <Card className="todo-data">
-          <div>todo : {todo.todo}</div>
-          <div>genre : {todo.genre}</div>
-          <div>limit_date : {formattedLimitDate}</div>
+          <div>TODO : {todo.todo}</div>
+          <div>GENRE : {todo.genre}</div>
+          <div>LIMIT-DATE : {formattedLimitDate}</div>
           {/*<div>(id : {todo.id})</div>*/}
         </Card>
       </Card>
