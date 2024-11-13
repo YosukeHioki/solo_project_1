@@ -10,13 +10,17 @@
 このアプリは予定（Todo）を作成・編集・削除ができる予定管理アプリです
 
 > ## 機能説明
+※ ダブルクオーテーション("")の中はボタン名です
 
-- "Create New Todo"：新規Todo作成コンポーネントを呼び出し
-    - "SUBMIT"：Todo・ジャンル・期日を入力して押すと新規作成が完了
-- "Todo : Complete"：完了したTodoリストを表示
-- "Todo : Incomplete"：未完了のTodoリストを表示
+- "Create New Todo"：新規Todo作成コンポーネントを表示します
+    - "SUBMIT"：Todo・ジャンル・期日を入力して押すと新規作成されます
+    - "CANCEL"：新規Todo作成コンポーネントを閉じます
+- "Todo : Complete"：完了したTodoリストを表示します
+- "Todo : Incomplete"：未完了のTodoリストを表示します
     - "COMPLETE"：完了状態に変更されます
-    - "EDIT"：登録されている内容の変更ができます
+    - "EDIT"：登録されている内容の編集コンポーネントを表示します
+        - "OK"：変更内容を登録します
+        - "CANSEL"：編集コンポーネントを閉じます
     - "DELETE"：登録されている内容の削除ができます
 
 > ## 開発環境
@@ -42,6 +46,9 @@
 - `server.js`サーバとの接続、エンドポイントの設定をしています
 - `knexfile.js`開発環境、本番環境それぞれでの接続情報を記述しています
 - `index.html`Reactで生成されるDOMのルートファイルです
+- `vite.config.js`接続先に対してのプロキシ設定を行なっています
+- `main.jsx`react-dom/react-router-domでindex.htmlにDOMを追加するルートを作成しています
+- `AppRoutes.jsx`ページ遷移時のルートを設定しています※まだ複数ページがないのでルートは一つだけです
 - `src/App.jsx`クライアント側で表示される画面コンポーネントを記述しています
 - `src/components`App.jsxで利用するコンポーネントが入ったフォルダです
 
