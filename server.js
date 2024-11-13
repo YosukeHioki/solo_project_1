@@ -1,5 +1,5 @@
 require("dotenv").config();
-const PORT = process.env.SERVER_PORT;
+const PORT = process.env.PORT;
 const environment = process.env.NODE_ENV;
 
 const express = require("express");
@@ -19,7 +19,7 @@ function setupServer() {
   //todoデータ追加
   app.post("/api", todoController.addNew);
 
-  //todoデータ更新、未確認！！！
+  //todoデータ更新
   app.patch("/api", todoController.update);
 
   //todoデータ削除
