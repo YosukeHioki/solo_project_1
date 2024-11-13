@@ -5,8 +5,8 @@
   "scripts": {
     "test": "clear && echo \"Error: no test specified\" && exit 1",
     "dev": "clear && nodemon server.js",
-    "build": "npm install",
     "start": "node ./index.js",
+    "build": "npm run install",
     "makeMigration": "./node_modules/.bin/knex migrate:make",
     "makeSeed": "./node_modules/.bin/knex seed:make",
     "migrate": "./node_modules/.bin/knex migrate:latest",

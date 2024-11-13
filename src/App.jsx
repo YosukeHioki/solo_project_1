@@ -62,7 +62,7 @@ export function App() {
     const response = await fetch("/api", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.fstringify(todoData),
+      body: JSON.stringify(todoData),
     });
     if (response.status === 200) {
       window.alert("新しいTodoが作成されました！");
