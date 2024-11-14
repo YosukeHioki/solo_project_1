@@ -1,0 +1,7 @@
+ローカルでの実行スクリプト
+"start": "node_modules/.bin/vite",
+"build": "node_modules/.bin/vite build",
+
+Renderでのデプロイ時の実行スクリプト
+"start": "node ./index.js",
+"build": "npm install",
